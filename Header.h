@@ -1,7 +1,22 @@
-#define COMPLEX_NUM -1
-#define INFINITE_SOLUTION -2
 
+
+enum TypesSolveSquare
+{
+	ZERO = 0,
+	ONE = 1,
+	TWO = 2,
+	COMPLEX = -1,
+	INFINITE = -2,
+	BUFFER_SIZE = 24
+};
+
+//! Checks, that input is correct
+double get_num(char * text);
+
+//! prints num of roots
 void num_print(int res);
-int is_zero(double m);
-int nRoots(double a, double b, double c, double * x1, double * x2);
-void check_value( int n, double a, double b, double c );
+
+//! solves and finds num of roots
+int eq_solver(double a, double b, double c, double * x1, double * x2);
+
+
