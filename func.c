@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
-#include "Header.h"
+#include "func.h"
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,10 +9,43 @@
 
 static const double EPS = 1e-6;
 static int NUM_INPUT = 3;
+// 1 2 4c
+// split into lexems
+// errno 
+// strtok
 
+void get_tok( double * a, double * b,double * c )
+{ 
+	char * delim = " ";
+	char buf[BUFFER_SIZE];
+	char *p;
+	double * mass[5] = {a, b, c}; 
+	printf("Enter num:");
+	char * k = fgets(buf, BUFFER_SIZE, stdin);
+	char * clone = strdup(buf);
+	
+	if ( !k )
+		return;
+	else
+	{
+		for ( int i = 0; i <= 2; i++ )
+		{
+			p = strtok(clone, delim);
+			if ( p == NULL ) 
+			{
+				*mass[i] = atof(clone);
+				break;
+			}
+			*mass[i] = atof(p);
+			clone += strlen(p) + 1;
+			
+		}
+	}
+	//free(clone);
+}
 double get_num(char * text)
 {
-    char buf[BUFFER_SIZE];
+    char buf[BUFFER_SIZE]; // stdin
     printf("%s",text);
     char * p = fgets (buf, BUFFER_SIZE, stdin);
     //printf("%p\n", p);
@@ -49,18 +82,23 @@ void num_print(int res)
         case(ZERO):
             printf("Zero");
             break;
+            
         case(ONE):
-            printf("Once");
+            printf("One");
             break;
+            
         case(TWO):
-            printf("Twice");
+            printf("Two");
             break;
+            
         case(INFINITE):
             printf("INFINITE_NUMBER_OF_SOLUTIONS");
             break;
+            
         case(COMPLEX):
-            printf("Complext nums");
+            printf("Complex roots");
             break;
+            
         default:
             printf("ERROR, number of solutions = %d\n", res);
     }
@@ -113,9 +151,12 @@ int eq_solver(double a, double b, double c, double * x1, double * x2)
             *x2 = *x1;
             return ONE;
         }
+        
         double discr_sqrt = sqrt(discr);
+        
         *x1 = (-b + discr_sqrt) / (2 * a);
         *x2 = (-b - discr_sqrt) / (2 * a);
+        
         return TWO;
     }
 

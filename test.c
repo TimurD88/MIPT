@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "test_header.h"
-#include "Header.h"
+#include "test.h"
+#include "func.h"
 
 
 int Test_function(const char* name, int expression)
@@ -19,7 +19,7 @@ int Test_function(const char* name, int expression)
 
 
 
-void _Test_(void)
+void test_unit(void)
 {
 	printf("Unit tests:\n");
 

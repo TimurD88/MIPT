@@ -1,7 +1,7 @@
 #include <assert.h>
 
 //! TESTS
-void _Test_(void);
+void test_unit(void);
 
 
 //!Checks test failed or not, returns 1, if passed, and returns 0 else.
